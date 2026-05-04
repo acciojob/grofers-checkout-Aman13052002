@@ -1,4 +1,4 @@
-const prices = document.querySelectorAll('.price');
+const prices = document.querySelectorAll('.prices');
 const table = document.querySelector('table');
 let totalPrice = 0;
 

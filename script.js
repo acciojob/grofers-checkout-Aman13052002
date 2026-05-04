@@ -6,11 +6,11 @@ button.addEventListener('click', function () {
   let totalPrice = 0;
 
   prices.forEach((price) => {
-    const matches = price.textContent.match(/\d+/g);
-    const value = matches ? Number(matches[matches.length - 1]) : 0;
-
+    const value = Number(price.textContent.match(/\d+$/)?.[0] || 0);
     totalPrice += value;
+  });
 
+  // Remove old total row if exists
   const existing = document.querySelector('#ans');
   if (existing) existing.remove();
 

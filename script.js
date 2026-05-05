@@ -2,25 +2,23 @@ const prices = document.querySelectorAll('.prices');
 const table = document.querySelector('table');
 const button = document.querySelector('button');
 
-button.addEventListener('click', function () {
-  let totalPrice = 0;
-
-  prices.forEach((price) => {
+button.addEventListener('click', () => {
+  let total = 0;
+  prices.forEach(price => {
     const value = Number(price.textContent.match(/\d+$/)?.[0] || 0);
-    totalPrice += value;
+    total += value;
   });
 
-  // Remove old total row if exists
-  const existing = document.querySelector('#ans');
-  if (existing) existing.remove();
+  const old = document.querySelector('#ans');
+  if (old) old.remove();
 
-  const newRow = document.createElement('tr');
-  newRow.id = "ans";
+  const row = document.createElement('tr');
+  row.id = "ans";
 
-  newRow.innerHTML = `
-    <td>Total Price</td>
-    <td>${totalPrice}</td>
-  `;
+  const cell = document.createElement('td');
+  cell.colSpan = 2;   
+  cell.textContent = total;
 
-  table.appendChild(newRow);
+  row.appendChild(cell);
+  table.appendChild(row);
 });

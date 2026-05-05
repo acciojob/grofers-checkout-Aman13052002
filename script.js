@@ -4,8 +4,11 @@ const button = document.querySelector('button');
 
 button.addEventListener('click', () => {
   let total = 0;
+
   prices.forEach(price => {
-    const value = Number(price.textContent.match(/\d+$/)?.[0] || 0);
+    const match = price.textContent.match(/\d+$/);
+    const value = match ? Number(match[0]) : 0;
+
     total += value;
   });
 
@@ -14,11 +17,10 @@ button.addEventListener('click', () => {
 
   const row = document.createElement('tr');
   row.id = "ans";
+  row.innerHTML = `
+    <td>Total</td>
+    <td>${total}</td>
+  `;
 
-  const cell = document.createElement('td');
-  cell.colSpan = 2;   
-  cell.textContent = total;
-
-  row.appendChild(cell);
   table.appendChild(row);
 });
